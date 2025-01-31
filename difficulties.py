@@ -22,8 +22,8 @@ def diff(difficulty):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_1:
+            elif event.type == pygame.KEYDOWN: 
+                if event.key == pygame.K_1: #diff selection
                     chosing = False
                     GRAVITY = 0.2
                     fruit["speed_y"] * 0.7
