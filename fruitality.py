@@ -391,6 +391,10 @@ def everything(no_music):
             screen.blit(menu_fond, (0, 0))
             screen.blit(play, (488, 330))
             screen.blit(diff, (488, 550))
+            if no_music:
+                screen.blit(mute, (50, 600))
+            elif not no_music:
+                screen.blit(unmute, (50, 600))
             if difficulty == 'easy':
                 screen.blit(pygame.transform.scale(easy, (easy.get_width() / 1.5, easy.get_height() / 1.5)), (888, 580))
             if difficulty == 'mid':
