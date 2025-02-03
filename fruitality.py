@@ -3,6 +3,7 @@ import random
 import time
 import json
 
+
 # Initialization of Pygame
 pygame.init()
 pygame.mixer.init()
@@ -60,7 +61,7 @@ strike_2 = pygame.image.load("images/2strike.png")
 strike_3 = pygame.image.load("images/3strike.png")
 mute = pygame.image.load("images/no_sound.png")
 unmute = pygame.image.load("images/sound.png")
-
+quit = pygame.image.load("images/quit_button.png")
 
 # Restart game
 def everything(no_music):
@@ -285,16 +286,17 @@ def everything(no_music):
 
         return [left_piece, right_piece], slow_duration, current_score, frenzy, boost
 
-
     # Main menu
     def menu(difficulty, begin, no_music):
         play_rect = play.get_rect(topleft=(488, 330))
         diff_rect = diff.get_rect(topleft=(488, 550))
         unmute_rect = unmute.get_rect(topleft=(50, 600))
         mute_rect = mute.get_rect(topleft=(50, 600))
+        quit_rect = quit.get_rect(topleft=(950, 400))
         screen.blit(menu_fond, (0, 0))
         screen.blit(play, play_rect.topleft)
         screen.blit(diff, diff_rect.topleft)
+        screen.blit(quit, quit_rect.topleft)
         if difficulty == 'easy':
             screen.blit(pygame.transform.scale(easy, (easy.get_width() / 1.5, easy.get_height() / 1.5)), (888, 580))
         if difficulty == 'mid':
@@ -327,6 +329,9 @@ def everything(no_music):
                             if not no_music:
                                 Game_sound.play(loops=-1, fade_ms=2000)
 
+                        elif quit_rect.collidepoint(event.pos):
+                            pygame.quit()
+                            
                         elif diff_rect.collidepoint(event.pos):
                             Button_sound.play()
                             Pause_sound.play()
@@ -446,14 +451,6 @@ def everything(no_music):
                 json.dump(data, f)
             best_score = current_score
         return current_score, best_score
-
-
-
-
-
-
-
-
 
 
     # Start of the main loops
